@@ -55,7 +55,14 @@ class Settings(BaseSettings):
     POSTGRES_PASSWORD: SecretStr | None = None
     POSTGRES_DB: str | None = None
     POSTGRES_APPLICATION_NAME: str = "agent_service"
-    TABLE_NAME_PREFIX: str = "agent_server_"
+    
+    # Core 服务表名前缀（Agent 服务需要跨服务访问 core 数据库）
+    CORE_TABLE_PREFIX: str = "core_"
+    CHAT_SESSION_TABLE_NAME: str = "chat_sessions"
+    
+    # Agent 服务表名前缀（LangGraph checkpointer 使用）
+    AGENT_TABLE_PREFIX: str = "agent_server_"
+    
     
     # psycopg_pool 原生连接池优化 (非 SQLAlchemy)
     POSTGRES_POOL_OPEN_TIMEOUT: int = 30

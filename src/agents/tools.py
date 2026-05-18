@@ -50,7 +50,7 @@ class LlamaIndexResources:
             database=settings.POSTGRES_DB,
             user=settings.POSTGRES_USER,
             password=settings.POSTGRES_PASSWORD.get_secret_value(),
-            table_name=settings.TABLE_NAME_PREFIX,
+            table_name=settings.AGENT_TABLE_PREFIX + "vector_store",
             embed_dim=settings.EMBEDDING_DIM
         )
 
