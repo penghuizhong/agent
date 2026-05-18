@@ -1,0 +1,92 @@
+[project]
+name = "fangyuan-agent-server"
+version = "0.1.0"
+description = "方圆智版 AI 后端引擎 (FastAPI + LangGraph + LlamaIndex + PostgreSQL)"
+readme = "README.md"
+authors = [{ name = "钟总" }]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Framework :: FastAPI",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+requires-python = ">=3.11,<3.14"
+
+dependencies = [
+    # ==========================================
+    # 1. 核心 Web 引擎 (FastAPI 体系)
+    # ==========================================
+    "fastapi ~=0.115.5",
+    "uvicorn ~=0.32.1",
+    "pydantic ~=2.11.5",
+    "pydantic-settings ~=2.10.1",
+    "python-dotenv ~=1.0.1",
+    "httpx ~=0.28.0",
+    "pyyaml ~=6.0.2",
+
+    # ==========================================
+    # 2. 数据库与缓存底层 (极简状态连接)
+    # ==========================================
+    "psycopg[binary,pool] ~=3.2.4",
+    "asyncpg >=0.30.0",
+
+    # ==========================================
+    # 3. AI 工作流编排 (LangGraph + LiteLLM)
+    # ==========================================
+    "langgraph >=1.1.0,<1.3.0",
+    "langgraph-checkpoint-postgres ~=2.0.13",
+    "uuid_utils ~=0.14.0",
+    "langfuse >=2.65.0",
+    "litellm >=1.80,<1.84",
+    "langchain-litellm >=0.1.0",
+
+    # ==========================================
+    # 4. 专业知识检索 (LlamaIndex 精确子包)
+    # ==========================================
+    "llama-index-core ~=0.14.17",
+    "llama-index-vector-stores-postgres ~=0.6.0",
+    "llama-index-readers-file ~=0.5.2",
+    "unstructured >=0.16",
+    "rapidfuzz ~=3.14.0",
+
+    # ==========================================
+    # 5. 工具、限流与安全防护 (Agent 验签与异步)
+    # ==========================================
+    "PyJWT[crypto] >=2.8.0",
+    "limits>=3.9.0",
+    "python-json-logger>=3.0.0",
+]
+
+# ==========================================
+# 🛠️ 开发辅助工具组 (仅保留测试与 Lint)
+# ==========================================
+[dependency-groups]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "pytest-cov",
+    "ruff",
+    "mypy",
+    "types-pyyaml>=6.0.12.20260510",
+]
+
+# ==========================================
+# 📐 代码规范与测试配置
+# ==========================================
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+extend-select = ["I", "U"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+asyncio_default_fixture_loop_scope = "function"
+
+[tool.pytest_env]
+OPENAI_API_KEY = "sk-fake-openai-key"
+
+[tool.mypy]
+plugins = "pydantic.mypy"
+

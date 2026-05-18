@@ -1,0 +1,45 @@
+# 机密文件
+.env
+*.env
+
+# Docker 编排
+compose.yaml
+compose.override.yaml
+docker-compose*.yml
+
+# Python 缓存
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Git
+.git/
+.gitignore
+
+# 开发工具缓存
+.ruff_cache/
+.pytest_cache/
+.mypy_cache/
+
+# 开发环境
+.venv/
+.vscode/
+.idea/
+
+# 构建产物
+*.egg-info/
+dist/
+build/
+
+# 文档与数据
+README.md
+docs/
+data/
+db_backup.sql
+
+# CI/CD
+.github/
+
+# OPTIMIZATION_PLAN.md
+OPTIMIZATION_PLAN.md
